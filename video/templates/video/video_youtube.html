@@ -1,0 +1,18 @@
+{% extends "video/video_detail.html" %}
+
+{% block video_content %}
+
+<object width="600" height="338">
+    <param name="movie" value="{{ video.source_id }}"></param>
+    <param name="allowFullScreen" value="true"></param>
+    <param name="allowscriptaccess" value="always"></param>
+    <embed src="http://www.youtube.com/v/{{ video.source_id }}&fs=1&rel=&hd=10&showinfo=0&iv_load_policy=3" 
+           type="application/x-shockwave-flash" 
+           allowscriptaccess="always" 
+           allowfullscreen="true" 
+           width="600" 
+           height="338">
+    </embed>
+</object>
+
+{% endblock %}

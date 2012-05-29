@@ -1,0 +1,18 @@
+{% extends "video/video_detail.html" %}
+
+{% block video_content %}
+
+<object width="600" height="338"><param name="allowfullscreen" value="true" />
+    <param name="allowscriptaccess" value="always" />
+    <param name="movie" 
+           value="http://vimeo.com/moogaloop.swf?clip_id={{ video.source_id }}&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=59a5d1&amp;fullscreen=1" />
+    <embed src="http:/vimeo.com/moogaloo.swf?clip_id={{ video.source_id }}&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=59a5d1&amp;fullscreen=1" 
+           type="application/x-shockwave-flash" 
+           allowfullscreen="true" 
+           allowscriptaccess="always" 
+           width="600" 
+           height="338">
+    </embed>
+</object>
+
+{% endblock %}

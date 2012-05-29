@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1 id="">{{ title }}</h1>
+
+    <ul>
+        {% for video in pagination.items %}
+            <li>
+                <div>Artist: {{ video.artist }}</div>
+                <div>Title: {{ video.title }}</div>
+                <div><a href="{{ url_for('video_detail', id=video.mongo_id)}}"><img src="{{ url_for('video_image', id=video.mongo_id) }}"/></a></div>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <p class="pagination">
+        {% if pagination.has_prev() %}
+            <a href="{{ url_for('list_videos', page=pagination.prev_num) }}">&lt; Previous page</a>
+        {% endif %}
+        &nbsp;
+        {% if pagination.has_next() %}
+            <a href="{{ url_for('list_videos', page=pagination.next_num) }}">Next page &gt;</a>
+        {% endif %}
+    </p>
+
+{% endblock %}

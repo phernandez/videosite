@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+
+    <h1 id="">{{ title }}</h1>
+    
+    <div>
+        Artist: {{ video.artist }}
+    </div>
+    <div>
+        Title: {{ video.title }}
+    </div>
+    
+    {% block video_content %}
+
+    {% endblock %}
+    
+{% endblock %}
