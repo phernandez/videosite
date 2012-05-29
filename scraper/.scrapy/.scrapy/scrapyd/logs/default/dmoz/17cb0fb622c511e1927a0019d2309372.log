@@ -1,0 +1,31 @@
+2011-12-09 18:22:53-0600 [scrapy] INFO: Scrapy 0.14.0.2841 started (bot: tutorial)
+2011-12-09 18:22:53-0600 [scrapy] DEBUG: Enabled extensions: LogStats, TelnetConsole, CloseSpider, WebService, CoreStats, MemoryUsage, SpiderState
+2011-12-09 18:22:53-0600 [scrapy] DEBUG: Enabled downloader middlewares: HttpAuthMiddleware, DownloadTimeoutMiddleware, UserAgentMiddleware, RetryMiddleware, DefaultHeadersMiddleware, RedirectMiddleware, CookiesMiddleware, HttpCompressionMiddleware, ChunkedTransferMiddleware, DownloaderStats
+2011-12-09 18:22:53-0600 [scrapy] DEBUG: Enabled spider middlewares: HttpErrorMiddleware, OffsiteMiddleware, RefererMiddleware, UrlLengthMiddleware, DepthMiddleware
+2011-12-09 18:22:53-0600 [scrapy] DEBUG: Enabled item pipelines: 
+2011-12-09 18:22:53-0600 [dmoz] INFO: Spider opened
+2011-12-09 18:22:53-0600 [dmoz] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2011-12-09 18:22:53-0600 [scrapy] DEBUG: Telnet console listening on 0.0.0.0:6023
+2011-12-09 18:22:53-0600 [scrapy] DEBUG: Web service listening on 0.0.0.0:6080
+2011-12-09 18:22:53-0600 [dmoz] DEBUG: Crawled (200) <GET http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/> (referer: None)
+2011-12-09 18:22:53-0600 [dmoz] DEBUG: Scraped from <200 http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/>
+	{'desc': [u'\n                '], 'link': [u'/'], 'title': [u'Top']}
+2011-12-09 18:22:53-0600 [dmoz] DEBUG: Crawled (200) <GET http://www.dmoz.org/Computers/Programming/Languages/Python/Books/> (referer: None)
+2011-12-09 18:22:53-0600 [dmoz] DEBUG: Scraped from <200 http://www.dmoz.org/Computers/Programming/Languages/Python/Books/>
+	{'desc': [u'\n                '], 'link': [u'/'], 'title': [u'Top']}
+2011-12-09 18:22:53-0600 [dmoz] INFO: Closing spider (finished)
+2011-12-09 18:22:53-0600 [dmoz] INFO: Dumping spider stats:
+	{'downloader/request_bytes': 486,
+	 'downloader/request_count': 2,
+	 'downloader/request_method_count/GET': 2,
+	 'downloader/response_bytes': 13170,
+	 'downloader/response_count': 2,
+	 'downloader/response_status_count/200': 2,
+	 'finish_reason': 'finished',
+	 'finish_time': datetime.datetime(2011, 12, 10, 0, 22, 53, 777564),
+	 'item_scraped_count': 2,
+	 'scheduler/memory_enqueued': 2,
+	 'start_time': datetime.datetime(2011, 12, 10, 0, 22, 53, 313662)}
+2011-12-09 18:22:53-0600 [dmoz] INFO: Spider closed (finished)
+2011-12-09 18:22:53-0600 [scrapy] INFO: Dumping global stats:
+	{'memusage/max': 107245568, 'memusage/startup': 107245568}
