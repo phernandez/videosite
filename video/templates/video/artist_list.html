@@ -4,6 +4,7 @@
     {{ title }}
 {% endblock %}
 
+
 {% block content %}
     <h1 id="">{{ title }}</h1>
 
@@ -11,9 +12,6 @@
         {% for video in pagination.items %}
             <li>
                 <div>Artist: {{ video.artist }}</div>
-                <div>Title: {{ video.title }}</div>
-                <div>id: {{ video.mongo_id }}</div>
-                <div><a href="{{ url_for('video_detail', vid=video.mongo_id)}}"><img src="{{ url_for('video_image', vid=video.mongo_id) }}"/></a></div>
             </li>
         {% endfor %}
     </ul>

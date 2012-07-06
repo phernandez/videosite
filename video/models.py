@@ -15,8 +15,11 @@ from video import db
 
 class VideoQuery(BaseQuery):
 
-    def get_johns(self):
-        return self.filter(self.type.first_name == 'John')
+    def by_artist(self, **kwargs):
+        return self.filter().ascending(self.type.artist).paginate(**kwargs)
+
+    def by_title(self, **kwargs):
+        return self.filter().ascending(self.type.title).paginate(**kwargs)
 
 class Video(db.Document):
     

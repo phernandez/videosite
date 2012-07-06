@@ -16,7 +16,7 @@ fs = gridfs.GridFS(Video.query.session.db)
 
 @app.route('/videos')
 @app.route('/videos/<int:page>')
-def list_videos(page=1):
+def video_list(page=1):
     title = u'Video list'
     pagination = Video.query.paginate(page=page, per_page=5)
     return render_template('/video/video_list.html', pagination=pagination, title=title)
@@ -32,6 +32,13 @@ def video_detail(vid):
 def video_image(vid):
     video = Video.query.get_or_404(vid)
     return gridfs_file(video.image_gridfs)
+
+@app.route('/artists')
+@app.route('/artists/<int:page>')
+def artist_list(page=1):
+    title = u'Artist list'
+    pagination = Video.query.by_artist(page=page, per_page=5)
+    return render_template('/video/artist_list.html', pagination=pagination, title=title)
 
 def gridfs_file(oid):
     try:
