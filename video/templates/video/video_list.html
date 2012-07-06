@@ -4,6 +4,10 @@
     {{ title }}
 {% endblock %}
 
+{% block nav %}
+<h2> [ artist | title | source ]</h2>
+{% endblock %}
+
 {% block content %}
     <h1 id="">{{ title }}</h1>
 
@@ -12,7 +16,8 @@
             <li>
                 <div>Artist: {{ video.artist }}</div>
                 <div>Title: {{ video.title }}</div>
-                <div><a href="{{ url_for('video_detail', id=video.mongo_id)}}"><img src="{{ url_for('video_image', id=video.mongo_id) }}"/></a></div>
+                <div>id: {{ video.mongo_id }}</div>
+                <div><a href="{{ url_for('video_detail', vid=video.mongo_id)}}"><img src="{{ url_for('video_image', vid=video.mongo_id) }}"/></a></div>
             </li>
         {% endfor %}
     </ul>
