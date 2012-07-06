@@ -10,25 +10,11 @@ import gridfs
 from video.models import Video
 
 class VideoTest(unittest.TestCase):
-    
+
     def setUp(self):
         app = Flask(__name__)
-        
-        #TODO: fix this
-        app.config['MONGOALCHEMY_SERVER'] = 'ds033047.mongolab.com'
-        app.config['MONGOALCHEMY_PORT'] = '33047'
-        app.config['MONGOALCHEMY_USER'] = 'video'
-        app.config['MONGOALCHEMY_PASSWORD'] = 'video1'
-        app.config['MONGOALCHEMY_DATABASE'] = 'video'
-        app.config['MONGOALCHEMY_SERVER_AUTH'] = False
-        
-        app.config['SECRET_KEY'] = 'very secret, do you believe?'
-        app.config['DEBUG'] = True
-        
-        db = MongoAlchemy(app)
-        self.app = app
-        self.db = db
-    
+        app.config.from_object('video.settings')
+            
     def test_video_save(self):
         vid = Video(embed_url="http://player.vimeo.com/video/41088675",
                     artist="Mirel Wagner",
@@ -36,6 +22,10 @@ class VideoTest(unittest.TestCase):
                     image="http://cdn3.pitchfork.com/video-archive/1983/medium.bb8aa5ef.jpg",
                     title="Joe")
         vid.save()
+        saved = Video.query.get(vid.mongo_id)
+        self.assertIsNotNone(saved, "Video not saved")
+        self.assertIsNotNone(saved.source, "No video source set on save")
+        self.assertIsNotNone(saved.image_gridfs, "No video gridfs image_gridfs")
         
     def test_video_img(self):
         vid = Video(embed_url="http://player.vimeo.com/video/41088675",

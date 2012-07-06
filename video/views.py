@@ -21,21 +21,21 @@ def list_videos(page=1):
     pagination = Video.query.paginate(page=page, per_page=5)
     return render_template('/video/video_list.html', pagination=pagination, title=title)
 
-@app.route('/videos/show/<id>')
-def video_detail(id):
-    video = Video.query.get_or_404(id)
+@app.route('/videos/show/<vid>')
+def video_detail(vid):
+    video = Video.query.get_or_404(vid)
     title = "{artist} - {title}".format(artist=video.artist, title=video.title)
     source = str(video.source).lower()
     return render_template('/video/video_{0}.html'.format(source), video=video, title=title)
 
-@app.route('/videos/show/image/<id>')
-def video_image(id):
-    video = Video.query.get_or_404(id)
+@app.route('/videos/show/image/<vid>')
+def video_image(vid):
+    video = Video.query.get_or_404(vid)
     return gridfs_file(video.image_gridfs)
 
 def gridfs_file(oid):
     try:
-        file = fs.get(oid)
-        return Response(file, mimetype=file.content_type, direct_passthrough=True)
+        gfile = fs.get(oid)
+        return Response(gfile, mimetype=gfile.content_type, direct_passthrough=True)
     except NoFile:
         abort(404)         

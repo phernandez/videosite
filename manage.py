@@ -7,6 +7,7 @@ Created on May 8, 2012
 import os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+
 from flaskext.script import Manager, Server
 from video import app
 

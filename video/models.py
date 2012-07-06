@@ -9,11 +9,19 @@ import re
 import os
 from urllib import urlretrieve
 import gridfs
+from flaskext.mongoalchemy import BaseQuery
 
 from video import db
 
+class VideoQuery(BaseQuery):
+
+    def get_johns(self):
+        return self.filter(self.type.first_name == 'John')
+
 class Video(db.Document):
     
+    query_class = VideoQuery
+
     #patterns to extract video ids from embedded video types
     embed_types = (
         ('youtube', r'youtube\.com\/embed\/([A-Za-z0-9._%-]+)'),
@@ -34,27 +42,30 @@ class Video(db.Document):
     source_id = db.StringField(required=False)
     image_gridfs = db.ObjectIdField(required=False)
         
-    
-    def __init__(self, **kwargs):
-        db.Document.__init__(self, **kwargs)
         
+    def save(self, safe=None):
         if self.embed_url:
             self._set_video_source_info()
         
         if self.image:
             self._save_img()
-        
+            
+        db.Document.save(self, safe)
+    
     def _set_video_source_info(self):
         for val,pattern in self.embed_types:
             if val in self.embed_url:
                 self.source = val
                 self.source_id = re.findall(pattern,self.embed_url)[0]
                 break
-            
+        
+        print "saving img source"    
         if not self.source:
-            print 'No source from {1} found in embed_url {2}.'.format(self.embed_types, self.embed_url)
+            print "No source for %s" % self
+            #print 'No source from {1} found in embed_url {2}.'.format(self.embed_types, self.embed_url)
     
     def _save_img(self):
+        print "saving image"
         imgname = self.image.split("/")[-1]
         
         if not imgname:
@@ -71,8 +82,3 @@ class Video(db.Document):
             print e
             print 'Error saving image to GridFS for {1}'.format(self)
             
-    def __repr__(self):        
-        return 'video(artist={artist}, title={title}, source={source})'.format(artist=self.artist, 
-                                                                               title=self.title, 
-                                                                               source=self.source)
-
