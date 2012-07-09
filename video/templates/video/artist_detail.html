@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1 id="">{{ title }}</h1>
+    
+    <div>Artist: {{ artist }}</div>
+
+    <ul>
+        {% for video in pagination.items %}
+            <li>
+                <div><a href="{{ url_for('video_detail', vid=video.mongo_id)}}"><img src="{{ url_for('video_image', vid=video.mongo_id) }}"/></a></div>
+            </li>
+        {% endfor %}
+    </ul>
+    
+{% endblock %}
