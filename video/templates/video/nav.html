@@ -1,4 +1,4 @@
 
 {% block nav %}
-<h2> [ <a href="{{ url_for('video_list')}}">all</a> | <a href="{{ url_for('artist_list')}}">artist</a> | title | source ]</h2>
+<h2> [ <a href="{{ url_for('video_list')}}">all</a> | <a href="{{ url_for('artist_list')}}">artist</a> | <a href="{{ url_for('video_list')}}?sort=title">title</a> | source ]</h2>
 {% endblock %}
