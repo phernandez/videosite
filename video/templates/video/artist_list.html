@@ -10,7 +10,7 @@
     <ul>
         {% for video in pagination.items %}
             <li>
-                <div>Artist: {{ video.artist }}</div>
+                <div><a href="{{ url_for('artist_detail', artist_slug=video.artist_slug) }}">{{ video.artist }}</a></div>
             </li>
         {% endfor %}
     </ul>

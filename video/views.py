@@ -47,11 +47,13 @@ def artist_list(page=1):
     pagination = Video.query.by_artist(page=page, per_page=5)
     return render_template('/video/artist_list.html', pagination=pagination, title=title)
 
-@app.route('/artists/<artist>')
-def artist_detail(artist):
+@app.route('/artists/<artist_slug>')
+def artist_detail(artist_slug):
+    
+    videos = Video.query.filter(Video.artist_slug == artist_slug)
+    artist = videos.first().artist
     title = u'Artist %s' % artist
-    pagination = Video.query.by_artist(page=page, per_page=5)
-    return render_template('/video/artist_list.html', pagination=pagination, title=title)
+    return render_template('/video/artist_detail.html', artist=artist, videos=videos, title=title)
 
 def gridfs_file(oid):
     try:

@@ -7,10 +7,8 @@
 {% block content %}
     <h1 id="">{{ title }}</h1>
     
-    <div>Artist: {{ artist }}</div>
-
     <ul>
-        {% for video in pagination.items %}
+        {% for video in videos %}
             <li>
                 <div><a href="{{ url_for('video_detail', vid=video.mongo_id)}}"><img src="{{ url_for('video_image', vid=video.mongo_id) }}"/></a></div>
             </li>
